@@ -1,5 +1,6 @@
 package kotisivukaappari;
 import java.net.*;
+import java.io.*;
 import java.util.Scanner;
 /**
  *
@@ -8,11 +9,12 @@ import java.util.Scanner;
 public class KotiSivuKaappari {
 
 
-    public static void main(String[] args) {
-        // Creation of variables
+    public static void main(String[] args) throws FileNotFoundException {
+        // Creation of variable to store content and for the url
         
       String content = null;
       URLConnection connection;
+      //try - catch for connection. 
             try {
                     connection =  new URL("https://vita.fi/laboratoriokasikirja/tutkimus/270").openConnection();
                     Scanner scanner = new Scanner(connection.getInputStream());
@@ -23,7 +25,8 @@ public class KotiSivuKaappari {
             catch ( Exception ex ) {
                     ex.printStackTrace();
                 }
-System.out.println(content);
+            PrintWriter txt = new PrintWriter("tekstina.txt");
+            txt.println(content);
     }
     
 }
